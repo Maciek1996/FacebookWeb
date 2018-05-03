@@ -14,8 +14,16 @@
       version    : 'v3.0'
     });
       
-    FB.AppEvents.logPageView();   
-      
+	FB.getLoginStatus(function(response) {
+		if(response === 'connected')
+		{}
+		else if(response === "not authorided")
+		{}
+		else
+		{}
+	});
+	  
+    FB.AppEvents.logPageView();         
   };
 
   (function(d, s, id){
@@ -26,26 +34,28 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
    
-   FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-});
+    
+	function checkLoginState() {
+	FB.getLoginStatus(function(response) {
+		statusChangeCallback(response);
+	});
+	}
 
-
-
-
-function checkLoginState() {
-  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-  });
-}
-
+	function getInfo(){
+		FB.api('/me','GET',{fields:'first_name'},function(response){document.getElementById('user').innerHTML=response.name;});
+	}
+	
    
 </script>
+
+<div id ="user"></div>
 
 <fb:login-button 
   scope="public_profile,email"
   onlogin="checkLoginState();">
 </fb:login-button>
+
+<button onclick="getInfo();">Info</button>
 
 </body>
 </html>
