@@ -32,10 +32,10 @@
 	{
 		FB.login(function()
 		{
-			FB.api('/me','GET',function(response)
+			FB.api('/me','GET',{fields: 'first_name,last_name,name,id,picture.width(150).height(150)'},function(response)
 			{
-				document.getElementById("user_name").innerHTML=response.name;
-				document.getElementById("user_picture").innerHTML= response.picture.data.url; //"<img src='" + response.picture.data.url + "'>";
+				document.getElementById("user_name").innerHTML = response.name;
+				document.getElementById("user_picture").innerHTML = "<img src='" + response.picture.data.url + "'>";
 				
 			});
 		
