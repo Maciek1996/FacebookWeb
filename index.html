@@ -12,18 +12,7 @@
       cookie     : true,
       xfbml      : true,
       version    : 'v3.0'
-    });
-      
-	FB.getLoginStatus(function(response) {
-		if(response === 'connected')
-		{}
-		else if(response === "not authorided")
-		{}
-		else
-		{}
-	});
-	  
-    FB.AppEvents.logPageView();         
+    });      	
   };
 
   (function(d, s, id){
@@ -35,28 +24,32 @@
    }(document, 'script', 'facebook-jssdk'));
    
     
-	function checkLoginState() {
-	FB.getLoginStatus(function(response) {
-		statusChangeCallback(response);
-	});
-	}
-
 	function getInfo(){
 		FB.api('/me','GET',{fileds:'first_name,last_name_name_id'},function(response){document.getElementById('user').innerHTML=response.name;});
+	}
+	
+	function getData()
+	{
+		FB.login(function()
+		{
+			FB.api('/me','GET',function(response)
+			{
+				document.getElementById('user_picture').innerHTML="<img src='"+response.picture.data.url + "'>";
+				document.getElementById('user_name').innerHTML=response.name;
+			});
+		
+		});
 	}
 	
    
 </script>
 
-<div id ="user"></div>
 
-<fb:login-button 
-  scope="public_profile,email"
-  onlogin="checkLoginState();">
-</fb:login-button>
-
-<button onclick="getInfo();">Info</button>
-
+<div style="text-align: center;">
+	<div id ="user_picture"></div>
+	<div id ="user_name"></div>
+	<button onclick="getData();">Zaloguj</button>
+</div>
 </body>
 </html>
 
