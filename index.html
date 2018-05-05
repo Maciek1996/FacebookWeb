@@ -35,8 +35,8 @@
 			FB.api('/me','GET',function(response)
 			{
 				console.log(response);
-				document.getElementById('user_name').innerHTML=response.name;
-				document.getElementById('user_picture').innerHTML="<img src='"+response.picture.data.url + "'>";
+				document.getElementById("user_name").innerHTML=response.name;
+				document.getElementById("user_picture").innerHTML="<img src='"+response.picture.data.url + "'>";
 				
 			});
 		
@@ -49,7 +49,7 @@
 
 	<div id ="user_picture"></div>
 	<div id ="user_name"></div>
-	<button onclick="getData();">Zaloguj</button>
+	<button onclick="getData()">Zaloguj</button>
 
 </body>
 </html>
