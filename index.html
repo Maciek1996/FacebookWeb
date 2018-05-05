@@ -35,8 +35,9 @@
 			FB.api('/me','GET',function(response)
 			{
 				console.log(response);
-				document.getElementById('user_picture').innerHTML="<img src='"+response.picture.data.url + "'>";
 				document.getElementById('user_name').innerHTML=response.name;
+				document.getElementById('user_picture').innerHTML="<img src='"+response.picture.data.url + "'>";
+				
 			});
 		
 		});
